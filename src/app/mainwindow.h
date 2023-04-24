@@ -25,6 +25,7 @@ public:
     ThreadElement *threadElement;
 public slots:
     void spinBox(int number);
+    void steghide(void);
 
 private:
     QProcess *m_process;    ///< Processus de selection d'imprimante

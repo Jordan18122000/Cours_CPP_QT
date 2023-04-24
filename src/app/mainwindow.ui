@@ -26,6 +26,9 @@
       </item>
       <item>
        <widget class="QPlainTextEdit" name="plainTextEdit">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
         <property name="plainText">
          <string>NONE</string>
         </property>
@@ -62,7 +65,7 @@
      <x>0</x>
      <y>0</y>
      <width>510</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

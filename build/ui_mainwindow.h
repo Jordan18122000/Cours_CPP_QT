@@ -65,6 +65,7 @@ public:
 
         plainTextEdit = new QPlainTextEdit(centralWidget);
         plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
+        plainTextEdit->setReadOnly(true);
 
         verticalLayout->addWidget(plainTextEdit);
 
@@ -95,7 +96,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 510, 26));
+        menuBar->setGeometry(QRect(0, 0, 510, 21));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
