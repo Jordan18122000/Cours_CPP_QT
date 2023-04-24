@@ -10,7 +10,7 @@ TEMPLATE = app
 QT += core gui printsupport network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-greaterThan(QT_MAJOR_VERSION, 4): QT += multimedia
+# greaterThan(QT_MAJOR_VERSION, 4): QT += multimedia
 
 # --- Gestion src/ build/ bin/ ---
 BASE_DIR	= ".."

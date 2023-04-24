@@ -9,6 +9,8 @@
 #include <QPrinterInfo>
 #include <QPrintDialog>
 #include <QHostInfo>
+#include <QLineEdit>
+#include <QInputDialog>
 #include "thread_element.h"
 
 namespace Ui {
