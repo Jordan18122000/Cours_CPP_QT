@@ -225,20 +225,69 @@ void MainWindow::steghide()
 
     // Exécution du fichier shell
     QProcess process;
-    process.start("bash", QStringList() << shellFilePath);
+    process.setWorkingDirectory(shellFolder); // Spécifie le répertoire de travail pour le processus
+    process.start("/bin/bash", QStringList() << shellFilePath);
 
+    qDebug() << "Chemin absolu du fichier shell :" << shellFilePath;
     if (!process.waitForStarted())
     {
         qDebug() << "Impossible de démarrer la commande";
         return;
     }
+    if (!process.waitForFinished()) {
+        qDebug() << "Erreur: impossible de terminer le processus";
+        return;
+    }
     process.waitForFinished();
     qDebug() << "Commande terminée avec le code de sortie" << process.exitCode();
 
-    // Suppression du fichier shell temporaire
-    // QFile::remove(shellFilePath);
-
     // Récupération de la sortie standard et d'erreur
+    QString output = QString::fromUtf8(process.readAllStandardOutput());
+    QString errorOutput = QString::fromUtf8(process.readAllStandardError());
+    qDebug() << "errorOutput :" << errorOutput;
+    qDebug() << "output :" << output;
+
+    // Lecture du fichier mot_de_passe.txt
+    QString passwordFilePath = shellFolder + "/mot_de_passe.txt";
+    QFile passwordFile(passwordFilePath);
+    // Vérification de l'existence du fichier
+    if (!QFile::exists("mot_de_passe.txt"))
+    {
+        qDebug() << "Erreur lors de l'extraction : " << errorOutput;
+        return;
+    }
+    if (!passwordFile.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug() << "Impossible d'ouvrir le fichier mot_de_passe.txt";
+        return;
+    }
+    QTextStream passwordStream(&passwordFile);
+    QString password = passwordStream.readLine();
+    passwordFile.close();
+
+    qDebug() << "Mot de passe : " << password;
+    ui->plainTextEdit->setPlainText(password);
+
+
+    // Suppression du fichier shell
+    if (QFile::exists(shellFilePath))
+    {
+        if (!QFile::remove(shellFilePath))
+        {
+            qDebug() << "Erreur lors de la suppression du fichier shell";
+        }
+    }
+
+    // Suppression du fichier mot_de_passe.txt
+    if (QFile::exists(passwordFilePath))
+    {
+        if (!QFile::remove(passwordFilePath))
+        {
+            qDebug() << "Erreur lors de la suppression du fichier mot_de_passe.txt";
+        }
+    }
+
+/*    // Récupération de la sortie standard et d'erreur
     QString output = QString::fromUtf8(process.readAllStandardOutput());
     QString errorOutput = QString::fromUtf8(process.readAllStandardError());
     qDebug() << "errorOutput :" << errorOutput;
@@ -281,7 +330,7 @@ void MainWindow::steghide()
         QMessageBox::warning(this, tr("Extraction impossible"), errorOutput);
         qDebug() << "Erreur lors de l'extraction :" << errorOutput;
     }
-
+*/
 
 
 /*
