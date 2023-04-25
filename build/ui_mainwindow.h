@@ -35,13 +35,15 @@ public:
     QPlainTextEdit *plainTextEdit;
     QPushButton *pushButton;
     QPushButton *pushButton_clear;
+    QPushButton *pushButton_passphrase;
+    QVBoxLayout *verticalLayout_2;
+    QLabel *label;
+    QSpinBox *spinBox;
     QVBoxLayout *verticalLayout_3;
     QLabel *label_text_cryptage;
     QPlainTextEdit *plainTextEdit_cryptage;
     QPushButton *pushButton_cryptage;
-    QVBoxLayout *verticalLayout_2;
-    QLabel *label;
-    QSpinBox *spinBox;
+    QPushButton *pushButton_write_document;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -50,7 +52,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(510, 436);
+        MainWindow->resize(510, 456);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         gridLayout = new QGridLayout(centralWidget);
@@ -82,7 +84,28 @@ public:
         verticalLayout->addWidget(pushButton_clear);
 
 
-        gridLayout->addLayout(verticalLayout, 1, 0, 1, 1);
+        gridLayout->addLayout(verticalLayout, 3, 0, 1, 1);
+
+        pushButton_passphrase = new QPushButton(centralWidget);
+        pushButton_passphrase->setObjectName(QString::fromUtf8("pushButton_passphrase"));
+
+        gridLayout->addWidget(pushButton_passphrase, 1, 0, 1, 1);
+
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        label = new QLabel(centralWidget);
+        label->setObjectName(QString::fromUtf8("label"));
+
+        verticalLayout_2->addWidget(label);
+
+        spinBox = new QSpinBox(centralWidget);
+        spinBox->setObjectName(QString::fromUtf8("spinBox"));
+
+        verticalLayout_2->addWidget(spinBox);
+
+
+        gridLayout->addLayout(verticalLayout_2, 4, 0, 1, 1);
 
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setSpacing(6);
@@ -106,21 +129,10 @@ public:
 
         gridLayout->addLayout(verticalLayout_3, 0, 0, 1, 1);
 
-        verticalLayout_2 = new QVBoxLayout();
-        verticalLayout_2->setSpacing(6);
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        label = new QLabel(centralWidget);
-        label->setObjectName(QString::fromUtf8("label"));
+        pushButton_write_document = new QPushButton(centralWidget);
+        pushButton_write_document->setObjectName(QString::fromUtf8("pushButton_write_document"));
 
-        verticalLayout_2->addWidget(label);
-
-        spinBox = new QSpinBox(centralWidget);
-        spinBox->setObjectName(QString::fromUtf8("spinBox"));
-
-        verticalLayout_2->addWidget(spinBox);
-
-
-        gridLayout->addLayout(verticalLayout_2, 2, 0, 1, 1);
+        gridLayout->addWidget(pushButton_write_document, 2, 0, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -146,10 +158,12 @@ public:
         plainTextEdit->setPlainText(QApplication::translate("MainWindow", "NONE", nullptr));
         pushButton->setText(QApplication::translate("MainWindow", "Choisir l'image \303\240 d\303\251crypter", nullptr));
         pushButton_clear->setText(QApplication::translate("MainWindow", "Clear", nullptr));
+        pushButton_passphrase->setText(QApplication::translate("MainWindow", "PassPhrase", nullptr));
+        label->setText(QApplication::translate("MainWindow", "TextLabel", nullptr));
         label_text_cryptage->setText(QApplication::translate("MainWindow", "Message \303\240 cacher :", nullptr));
         plainTextEdit_cryptage->setPlainText(QApplication::translate("MainWindow", "NONE", nullptr));
         pushButton_cryptage->setText(QApplication::translate("MainWindow", "Choisir l'image \303\240 crypter", nullptr));
-        label->setText(QApplication::translate("MainWindow", "TextLabel", nullptr));
+        pushButton_write_document->setText(QApplication::translate("MainWindow", "Ecrire les message \303\240 cacher dans le document", nullptr));
     } // retranslateUi
 
 };

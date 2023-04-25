@@ -10,7 +10,6 @@ MainWindow::MainWindow(QWidget *parent) :
     threadElement = new ThreadElement(this);
 
     m_process = new QProcess(this);
-
     connectSignalsSlots();     //on connecte les signaux/slots
 }
 
@@ -30,6 +29,8 @@ void MainWindow::connectSignalsSlots()
     connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::steghide_decrypte);
     connect(ui->pushButton_cryptage, &QPushButton::clicked, this, &MainWindow::steghide_cryptage);
     connect(ui->pushButton_clear, &QPushButton::clicked, this, &MainWindow::steghide_clear);
+    connect(ui->pushButton_passphrase, &QPushButton::clicked, this, &MainWindow::steghide_passphrase);
+    connect(ui->pushButton_write_document, &QPushButton::clicked, this, &MainWindow::steghide_write_doc);
 }
 
 void MainWindow::spinBox(int number)
@@ -164,11 +165,17 @@ void MainWindow::steghide_cryptage()
         return;
     }
 
+    m_passphrase_user = passphrase;
+    qDebug() << "passphrase" << m_passphrase_user;
+
     // Demander le chemin du fichier à cacher
-    QString filePath = QFileDialog::getOpenFileName(nullptr, "Sélectionner le fichier à cacher", "", "Tous les fichiers (*)");
+   /* QString filePath = QFileDialog::getOpenFileName(nullptr, "Sélectionner le fichier à cacher", "", "Tous les fichiers (*)");
     if (filePath.isEmpty()) {
         return;
-    }
+    }*/
+
+    QString filePath = QDir::currentPath().remove("/bin/release") + "/documents/mot_de_passe.txt";
+    qDebug() << "testing :" << filePath;
 
     // Chemin absolu vers le dossier où nous pouvons créer le fichier shell
     QString shellFolder = QDir::currentPath().remove("/bin/release");
@@ -239,6 +246,40 @@ void MainWindow::steghide_cryptage()
     // Affichage d'un message de réussite
     QMessageBox::information(nullptr, "Cryptage terminé", "L'image a été cryptée avec succès.");
 
+}
+
+void MainWindow::steghide_write_doc()
+{
+    QString filePath = QDir::currentPath().remove("/bin/release") + "/documents/mot_de_passe.txt";
+
+    QFile file(filePath);
+
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        QTextStream stream(&file);
+        stream << ui->plainTextEdit_cryptage->toPlainText();
+        file.close();
+
+        // Affichage d'un message de confirmation
+        QMessageBox::information(nullptr, "Sauvegarde réussie", "Le fichier a été enregistré avec succès.");
+    }
+    else
+    {
+        // Affichage d'un message d'erreur
+        QMessageBox::critical(nullptr, "Erreur", "Impossible d'ouvrir le fichier en écriture.");
+    }
+}
+
+void MainWindow::steghide_passphrase()
+{
+    if(m_passphrase_user == "")
+    {
+        QMessageBox::information(nullptr, "Info PassPhrase", "La PassPhrase n'a pas été définie" "\n" "Veuillez crypter une image");
+    }
+    else
+    {
+        QMessageBox::information(nullptr, "Info PassPhrase", "La PassPhrase entrée est :" + m_passphrase_user);
+    }
 }
 
 void MainWindow::steghide_clear()
