@@ -62,7 +62,7 @@
       <item>
        <widget class="QLabel" name="label_text_decryptage">
         <property name="text">
-         <string>Code trouvé :</string>
+         <string>Message trouvé :</string>
         </property>
        </widget>
       </item>

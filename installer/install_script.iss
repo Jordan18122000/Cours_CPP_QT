@@ -16,7 +16,7 @@
 ; Nom de l'app sans caractère spécial
 #define MyAppNameNoSpace "EMBEDDED_CPP_QT"
 ; Numéro de version majeur
-#define MyAppVmaj "1"
+#define MyAppVmaj "2"
 ; Numéro de version mineur
 #define MyAppVmin "1"
 
