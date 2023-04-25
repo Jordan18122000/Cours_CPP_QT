@@ -44,6 +44,8 @@ ou
 
 ## Installation logiciel
 
+##### TODO: à corriger -- version installer NOK
+
 Pour installer la supervision QT, suivre le lien ci-dessous :
 
 [installer/EMBEDDED_CPP_QT_v1.0](./installer/EMBEDDED_CPP_QT_v1.0_setup.exe)
