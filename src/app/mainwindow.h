@@ -27,12 +27,22 @@ public:
     ThreadElement *threadElement;
 public slots:
     void spinBox(int number);
-    void steghide(void);
+    void steghide_decrypte(void);
+    void steghide_cryptage(void);
+    void steghide_write_doc(void);
+    void steghide_passphrase(void);
+    void steghide_clear(void);
 
 private:
     QProcess *m_process;    ///< Processus de selection d'imprimante
     Ui::MainWindow *ui;
+
+    /*---------------------------------------------------------------*/
+    /* Private Members                                               */
+    /*---------------------------------------------------------------*/
+    QString m_passphrase_user;
     void connectSignalsSlots();
+
 
 private slots:
 
