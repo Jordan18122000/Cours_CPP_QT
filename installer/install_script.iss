@@ -18,7 +18,7 @@
 ; Numéro de version majeur
 #define MyAppVmaj "1"
 ; Numéro de version mineur
-#define MyAppVmin "1"
+#define MyAppVmin "2"
 
 ; Numéro de version complet. Exemple: "3.1"
 #define MyAppVersion MyAppVmaj+"."+MyAppVmin
