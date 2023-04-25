@@ -34,8 +34,8 @@ public:
     QLabel *label_text_cryptage;
     QPlainTextEdit *plainTextEdit_cryptage;
     QPushButton *pushButton_write_document;
-    QPushButton *pushButton_passphrase;
     QPushButton *pushButton_cryptage;
+    QPushButton *pushButton_passphrase;
     QVBoxLayout *verticalLayout;
     QLabel *label_text_decryptage;
     QPlainTextEdit *plainTextEdit;
@@ -78,15 +78,15 @@ public:
 
         verticalLayout_3->addWidget(pushButton_write_document);
 
-        pushButton_passphrase = new QPushButton(centralWidget);
-        pushButton_passphrase->setObjectName(QString::fromUtf8("pushButton_passphrase"));
-
-        verticalLayout_3->addWidget(pushButton_passphrase);
-
         pushButton_cryptage = new QPushButton(centralWidget);
         pushButton_cryptage->setObjectName(QString::fromUtf8("pushButton_cryptage"));
 
         verticalLayout_3->addWidget(pushButton_cryptage);
+
+        pushButton_passphrase = new QPushButton(centralWidget);
+        pushButton_passphrase->setObjectName(QString::fromUtf8("pushButton_passphrase"));
+
+        verticalLayout_3->addWidget(pushButton_passphrase);
 
 
         gridLayout->addLayout(verticalLayout_3, 0, 0, 1, 1);
@@ -157,8 +157,8 @@ public:
         label_text_cryptage->setText(QApplication::translate("MainWindow", "Message \303\240 cacher :", nullptr));
         plainTextEdit_cryptage->setPlainText(QApplication::translate("MainWindow", "NONE", nullptr));
         pushButton_write_document->setText(QApplication::translate("MainWindow", "Ecrire le message \303\240 cacher dans le document", nullptr));
-        pushButton_passphrase->setText(QApplication::translate("MainWindow", "PassPhrase", nullptr));
         pushButton_cryptage->setText(QApplication::translate("MainWindow", "Choisir l'image \303\240 crypter", nullptr));
+        pushButton_passphrase->setText(QApplication::translate("MainWindow", "PassPhrase", nullptr));
         label_text_decryptage->setText(QApplication::translate("MainWindow", "Code trouv\303\251 :", nullptr));
         plainTextEdit->setPlainText(QApplication::translate("MainWindow", "NONE", nullptr));
         pushButton->setText(QApplication::translate("MainWindow", "Choisir l'image \303\240 d\303\251crypter", nullptr));
