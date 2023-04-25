@@ -13,7 +13,7 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_NO_DEBUG -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 INCPATH       = -I../src -I. -I../src/app -I../src/app/cmp/thread_element -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtNetwork -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
@@ -125,6 +125,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds_post.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/build_pass.prf \
+		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qml_debug.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf \
@@ -155,7 +156,7 @@ first: all
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 qmake: FORCE
-	@$(QMAKE) -o Makefile.Release ../src/Embedded_CPP_QT.pro -spec linux-g++
+	@$(QMAKE) -o Makefile.Release ../src/Embedded_CPP_QT.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 
 qmake_all: FORCE
 
@@ -210,12 +211,12 @@ compiler_moc_header_clean:
 		../src/app/cmp/thread_element/thread_element.h \
 		../build/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/jordan/Documents/Github/Cours_CPP_QT/build/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/jordan/Documents/Github/Cours_CPP_QT/src -I/home/jordan/Documents/Github/Cours_CPP_QT/src/app -I/home/jordan/Documents/Github/Cours_CPP_QT/src/app/cmp/thread_element -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -IC:/Qt/Qt5.7.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Qt5.7.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Qt5.7.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Qt5.7.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Qt5.7.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Qt5.7.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../src/app/mainwindow.h -o ../build/moc_mainwindow.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/jordan/Documents/Github/Cours_CPP_QT/build/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/jordan/Documents/Github/Cours_CPP_QT/src -I/home/jordan/Documents/Github/Cours_CPP_QT/src/app -I/home/jordan/Documents/Github/Cours_CPP_QT/src/app/cmp/thread_element -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../src/app/mainwindow.h -o ../build/moc_mainwindow.cpp
 
 ../build/moc_thread_element.cpp: ../src/app/cmp/thread_element/thread_element.h \
 		../build/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/jordan/Documents/Github/Cours_CPP_QT/build/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/jordan/Documents/Github/Cours_CPP_QT/src -I/home/jordan/Documents/Github/Cours_CPP_QT/src/app -I/home/jordan/Documents/Github/Cours_CPP_QT/src/app/cmp/thread_element -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -IC:/Qt/Qt5.7.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Qt5.7.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Qt5.7.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Qt5.7.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Qt5.7.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Qt5.7.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../src/app/cmp/thread_element/thread_element.h -o ../build/moc_thread_element.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/jordan/Documents/Github/Cours_CPP_QT/build/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/jordan/Documents/Github/Cours_CPP_QT/src -I/home/jordan/Documents/Github/Cours_CPP_QT/src/app -I/home/jordan/Documents/Github/Cours_CPP_QT/src/app/cmp/thread_element -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../src/app/cmp/thread_element/thread_element.h -o ../build/moc_thread_element.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
