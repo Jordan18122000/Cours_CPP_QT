@@ -18,7 +18,7 @@
     <item row="1" column="0">
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QLabel" name="label_caca">
+       <widget class="QLabel" name="label_text_decryptage">
         <property name="text">
          <string>Code trouvé :</string>
         </property>
@@ -37,7 +37,42 @@
       <item>
        <widget class="QPushButton" name="pushButton">
         <property name="text">
-         <string>Choisir l'image</string>
+         <string>Choisir l'image à décrypter</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_clear">
+        <property name="text">
+         <string>Clear</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QLabel" name="label_text_cryptage">
+        <property name="text">
+         <string>Message à cacher :</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPlainTextEdit" name="plainTextEdit_cryptage">
+        <property name="readOnly">
+         <bool>false</bool>
+        </property>
+        <property name="plainText">
+         <string>NONE</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_cryptage">
+        <property name="text">
+         <string>Choisir l'image à crypter</string>
         </property>
        </widget>
       </item>
@@ -65,7 +100,7 @@
      <x>0</x>
      <y>0</y>
      <width>510</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
