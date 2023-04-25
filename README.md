@@ -5,7 +5,7 @@
   <summary>Table des matières</summary>
   <ol>
     <li><a href="#prérequis">Prérequis</a></li>
-    <li><a href="#configuration-project">Configuration project</a></li>
+    <li><a href="#configuration-projet">Configuration projet</a></li>
     <li><a href="#installation-logiciel">Installation logiciel</a></li>
     <li><a href="#utilisation-du-logiciel">Utilisation du logiciel</a></li>
         <ul>
@@ -34,11 +34,11 @@ Installer l'outil steghide :
 
 ``` sudo apt-get install steghide ```
 
-or
+ou
 
 ``` sudo apt-get install steghide -y ```
 
-## Configuration project
+## Configuration projet
 
 ![readme_config_qt5](https://user-images.githubusercontent.com/79545759/234222067-df52baae-1e34-46ae-b937-f886c66d9a76.png)
 
@@ -64,7 +64,7 @@ Entrer le texte à cacher dans l'image comme ci-dessous dans l'espace dédié:
 Puis cliquer sur le bouton ci-dessous : 
 ![image](https://user-images.githubusercontent.com/79545759/234395357-0c18c13a-3802-40d2-b73e-b2c6b68e13e6.png)
 
-##### Si vous essayer de crypter une image sans avoir entrer un texte au préalable vous aurez le message ci-dessous : 
+##### Si vous essayez de crypter une image sans avoir entré un texte au préalable vous aurez le message ci-dessous : 
 ![image](https://user-images.githubusercontent.com/79545759/234395670-7314ee5f-b1a6-42cb-b748-9d06e8cafd98.png)
 
 ##### Si la sauvegarde fonctionne :
@@ -72,19 +72,19 @@ Puis cliquer sur le bouton ci-dessous :
 
 #### Deuxième étape:
 
-Pour choisir l'image que vous souhaitez crypter cliquez sur :
+Pour choisir l'image que vous souhaitez crypter cliquer sur :
 ![image](https://user-images.githubusercontent.com/79545759/234396337-97aed791-a951-43be-acb1-6a8f597a4ef1.png)
 
-Allez donc dans le répertoire de votre image :
+Utiliser l'interface pour trouver votre image :
 ![image](https://user-images.githubusercontent.com/79545759/234396493-bb9e554b-5ed2-4a6e-8920-1409f36e9b7c.png)
 
-##### Vous avez à vote disposition une image test ici : [documents/image](./documents/image.jpg)
+##### Vous avez à votre disposition une image test ici : [documents/image](./documents/image.jpg)
 
-Entrer alors un mot de passe pour proteger le cryptage :
+Entrer alors un mot de passe pour protéger le cryptage :
 
 ![image](https://user-images.githubusercontent.com/79545759/234396960-5202e578-a43f-4f07-bc3a-29342999d861.png)
 
-##### Pour consulter votre PassPhrase cliquez sur : 
+##### Pour consulter votre PassPhrase cliquer sur : 
 ![image](https://user-images.githubusercontent.com/79545759/234397141-2bb59e53-b328-4ba8-8d0b-49d899380f04.png)
 ##### Pour avoir :
 ![image](https://user-images.githubusercontent.com/79545759/234397375-9c3430a5-7cf8-4436-9aee-0a1f196aede5.png)
@@ -92,13 +92,13 @@ Entrer alors un mot de passe pour proteger le cryptage :
 ### Décrypter une image 
 
 #### Première étape:
-Pour choisir l'image que vous souhaitez décrypter cliquez sur :
+Pour choisir l'image que vous souhaitez décrypter cliquer sur :
 ![image](https://user-images.githubusercontent.com/79545759/234397676-69f5b18c-dc21-4d6f-9caa-2a7f0f0b22b8.png)
 
 Allez donc dans le répertoire de votre image à décrypter :
 ![image](https://user-images.githubusercontent.com/79545759/234397785-4bb2ed54-b688-409e-a47b-388123dedc57.png)
 
-Entrer la PassPhrase entrer lors du cryptage :
+Entrer la PassPhrase utilisé lors du cryptage :
 
 ![image](https://user-images.githubusercontent.com/79545759/234397996-69923b1e-95dc-4b42-a5d9-d2681f489a07.png)
 
