@@ -1,6 +1,35 @@
 # Cours_CPP_QT
 
-## Pré-requis 
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table des matières</summary>
+  <ol>
+    <li><a href="#prérequis">Prérequis</a></li>
+    <li><a href="#configuration-project">Configuration project</a></li>
+    <li><a href="#installation-logiciel">Installation logiciel</a></li>
+    <li><a href="#utilisation-du-logiciel">Utilisation du logiciel</a></li>
+        <ul>
+        <li><a href="#crypter-une-image">Crypter une image</a></li>
+            <ul>
+            <li><a href="#première-étape">Première étape</a></li>
+            </ul>
+            <ul>
+            <li><a href="#deuxième-étape">Deuxième étape</a></li>
+            </ul>
+        </ul>
+        <ul>
+        <li><a href="#décrypter-une-image">Décrypter une image</a></li>
+            <ul>
+            <li><a href="#première-étape">Première étape</a></li>
+            </ul>
+            <ul>
+            <li><a href="#deuxième-étape">Deuxième étape</a></li>
+           </ul>
+      </ul>
+  </ol>
+</details>
+
+## Prérequis
 Installer l'outil steghide : 
 
 ``` sudo apt-get install steghide ```
@@ -9,24 +38,25 @@ or
 
 ``` sudo apt-get install steghide -y ```
 
-## Configuration Project
+## Configuration project
 
 ![readme_config_qt5](https://user-images.githubusercontent.com/79545759/234222067-df52baae-1e34-46ae-b937-f886c66d9a76.png)
 
-## Installer l'outil de supervision 
+## Installation logiciel
 
 Pour installer la supervision QT, suivre le lien ci-dessous :
 
 [installer/EMBEDDED_CPP_QT_v1.0](./installer/EMBEDDED_CPP_QT_v1.0_setup.exe)
 
-## Utiliser la supervision QT 
+## Utilisation du logiciel
+
 Interface graphique :
 
 ![image](https://user-images.githubusercontent.com/79545759/234398797-6f01375f-89ab-44e9-a879-6df128fbfb2c.png)
 
 ### Crypter une image 
 
-#### Première étape :
+#### Première étape:
 
 Entrer le texte à cacher dans l'image comme ci-dessous dans l'espace dédié:
 ![image](https://user-images.githubusercontent.com/79545759/234395197-ab24284e-f39e-404e-bb22-2535f74f2d08.png)
@@ -40,7 +70,7 @@ Puis cliquer sur le bouton ci-dessous :
 ##### Si la sauvegarde fonctionne :
 ![image](https://user-images.githubusercontent.com/79545759/234396018-b78c8303-e1b4-499a-8f0c-ee8adae314b0.png)
 
-#### Deuxième étape :
+#### Deuxième étape:
 
 Pour choisir l'image que vous souhaitez crypter cliquez sur :
 ![image](https://user-images.githubusercontent.com/79545759/234396337-97aed791-a951-43be-acb1-6a8f597a4ef1.png)
@@ -61,7 +91,7 @@ Entrer alors un mot de passe pour proteger le cryptage :
 
 ### Décrypter une image 
 
-#### Première étape :
+#### Première étape:
 Pour choisir l'image que vous souhaitez décrypter cliquez sur :
 ![image](https://user-images.githubusercontent.com/79545759/234397676-69f5b18c-dc21-4d6f-9caa-2a7f0f0b22b8.png)
 
@@ -72,7 +102,7 @@ Entrer la PassPhrase entrer lors du cryptage :
 
 ![image](https://user-images.githubusercontent.com/79545759/234397996-69923b1e-95dc-4b42-a5d9-d2681f489a07.png)
 
-#### Deuxième étape :
+#### Deuxième étape:
 
 Voir le message trouvé :
 
