@@ -10,7 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
     threadElement = new ThreadElement(this);
 
     m_process = new QProcess(this);
+    attrInit();
     connectSignalsSlots();     //on connecte les signaux/slots
+
 }
 
 MainWindow::~MainWindow()
@@ -292,6 +294,19 @@ void MainWindow::steghide_passphrase()
 void MainWindow::steghide_clear()
 {
     ui->plainTextEdit->setPlainText("NONE");
+}
+
+void MainWindow::attrInit()
+{
+    // Vérifie si steghide est installé en essayant de lancer la commande "steghide"
+    QProcess process;
+    process.start("steghide --version");
+    process.waitForFinished();
+    if (process.exitCode() != QProcess::NormalExit || process.exitStatus() != QProcess::NormalExit) {
+        // Si la commande échoue, affiche un message d'erreur et quitte l'application
+        QMessageBox::critical(nullptr, "Erreur", "Steghide n'est pas installé sur votre système. Veuillez l'installer avant d'utiliser cette application.");
+        exit(EXIT_FAILURE);
+    }
 }
 
 
