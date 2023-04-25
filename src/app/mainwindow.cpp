@@ -152,100 +152,105 @@ void MainWindow::steghide_decrypte()
 
 void MainWindow::steghide_cryptage()
 {
-
-    // Demander le chemin de l'image à l'utilisateur
-    QString imagePath = QFileDialog::getOpenFileName(nullptr, "Sélectionner une image", "", "Images (*.png *.jpg *.bmp)");
-    if (imagePath.isEmpty()) {
-        return;
+    if(m_send_txt_user == "" || m_send_txt_user=="NODE")
+    {
+        QMessageBox::information(nullptr, "Info Cryptage", "Aucun texte n'a pas été envoyé" "\n" "Veuillez écrire du texte et cliquer sur :" "\n" " \"Ecrire le message à cacher dans le document \" ");
     }
+    else
+    {
+        // Demander le chemin de l'image à l'utilisateur
+        QString imagePath = QFileDialog::getOpenFileName(nullptr, "Sélectionner une image", "", "Images (*.png *.jpg *.bmp)");
+        if (imagePath.isEmpty()) {
+            return;
+        }
 
-    // Demander la passphrase à l'utilisateur
-    QString passphrase = QInputDialog::getText(nullptr, "Passphrase", "Entrer la passphrase pour crypter le fichier", QLineEdit::Password);
-    if (passphrase.isEmpty()) {
-        return;
-    }
+        // Demander la passphrase à l'utilisateur
+        QString passphrase = QInputDialog::getText(nullptr, "Passphrase", "Entrer la passphrase pour crypter le fichier", QLineEdit::Password);
+        if (passphrase.isEmpty()) {
+            return;
+        }
 
-    m_passphrase_user = passphrase;
-    qDebug() << "passphrase" << m_passphrase_user;
+        m_passphrase_user = passphrase;
+        qDebug() << "passphrase" << m_passphrase_user;
 
-    // Demander le chemin du fichier à cacher
-   /* QString filePath = QFileDialog::getOpenFileName(nullptr, "Sélectionner le fichier à cacher", "", "Tous les fichiers (*)");
+        // Demander le chemin du fichier à cacher
+        /* QString filePath = QFileDialog::getOpenFileName(nullptr, "Sélectionner le fichier à cacher", "", "Tous les fichiers (*)");
     if (filePath.isEmpty()) {
         return;
     }*/
 
-    QString filePath = QDir::currentPath().remove("/bin/release") + "/documents/mot_de_passe.txt";
-    qDebug() << "testing :" << filePath;
+        QString filePath = QDir::currentPath().remove("/bin/release") + "/documents/mot_de_passe.txt";
+        qDebug() << "testing :" << filePath;
 
-    // Chemin absolu vers le dossier où nous pouvons créer le fichier shell
-    QString shellFolder = QDir::currentPath().remove("/bin/release");
-    qDebug() << "Chemin absolu du dossier du projet :" << shellFolder;
+        // Chemin absolu vers le dossier où nous pouvons créer le fichier shell
+        QString shellFolder = QDir::currentPath().remove("/bin/release");
+        qDebug() << "Chemin absolu du dossier du projet :" << shellFolder;
 
-    // Vérifier si le dossier existe, sinon le créer
-    QDir dir(shellFolder);
-    if (!dir.exists()) {
-        qDebug() << "Impossible de trouver le dossier";
-        return;
-    }
-
-    // Chemin absolu vers le fichier shell
-    QString shellFilePath = shellFolder + "/embed.sh";
-    qDebug() <<"shellFilePath" << shellFilePath;
-    QFile shellFile(shellFilePath);
-    if (!shellFile.open(QIODevice::WriteOnly | QIODevice::Text))
-    {
-        qDebug() << "Impossible de créer le fichier shell";
-        return;
-    }
-
-    QTextStream stream(&shellFile);
-    stream << "#!/bin/bash\n";
-    stream << "chmod +x " << shellFilePath << "\n"; // Modifier les permissions pour exécuter le fichier
-    stream << "steghide embed -cf " << imagePath << " -ef " << filePath << " -p " << passphrase << " -q\n";
-    shellFile.close();
-
-    if (!shellFile.exists())
-    {
-        qDebug() << "Fichier shell non trouvé : " << shellFilePath;
-        return;
-    }
-
-    // Exécution du fichier shell
-    QProcess process;
-    process.setWorkingDirectory(shellFolder); // Spécifie le répertoire de travail pour le processus
-    process.start("/bin/bash", QStringList() << shellFilePath);
-
-    qDebug() << "Chemin absolu du fichier shell :" << shellFilePath;
-    if (!process.waitForStarted())
-    {
-        qDebug() << "Impossible de démarrer la commande";
-        return;
-    }
-    if (!process.waitForFinished()) {
-        qDebug() << "Erreur: impossible de terminer le processus";
-        return;
-    }
-    process.waitForFinished();
-    qDebug() << "Commande terminée avec le code de sortie" << process.exitCode();
-
-    // Récupération de la sortie standard et d'erreur
-    QString output = QString::fromUtf8(process.readAllStandardOutput());
-    QString errorOutput = QString::fromUtf8(process.readAllStandardError());
-    qDebug() << "errorOutput :" << errorOutput;
-    qDebug() << "output :" << output;
-
-    // Suppression du fichier shell
-    if (QFile::exists(shellFilePath))
-    {
-        if (!QFile::remove(shellFilePath))
-        {
-            qDebug() << "Erreur lors de la suppression du fichier shell";
+        // Vérifier si le dossier existe, sinon le créer
+        QDir dir(shellFolder);
+        if (!dir.exists()) {
+            qDebug() << "Impossible de trouver le dossier";
+            return;
         }
+
+        // Chemin absolu vers le fichier shell
+        QString shellFilePath = shellFolder + "/embed.sh";
+        qDebug() <<"shellFilePath" << shellFilePath;
+        QFile shellFile(shellFilePath);
+        if (!shellFile.open(QIODevice::WriteOnly | QIODevice::Text))
+        {
+            qDebug() << "Impossible de créer le fichier shell";
+            return;
+        }
+
+        QTextStream stream(&shellFile);
+        stream << "#!/bin/bash\n";
+        stream << "chmod +x " << shellFilePath << "\n"; // Modifier les permissions pour exécuter le fichier
+        stream << "steghide embed -cf " << imagePath << " -ef " << filePath << " -p " << passphrase << " -q\n";
+        shellFile.close();
+
+        if (!shellFile.exists())
+        {
+            qDebug() << "Fichier shell non trouvé : " << shellFilePath;
+            return;
+        }
+
+        // Exécution du fichier shell
+        QProcess process;
+        process.setWorkingDirectory(shellFolder); // Spécifie le répertoire de travail pour le processus
+        process.start("/bin/bash", QStringList() << shellFilePath);
+
+        qDebug() << "Chemin absolu du fichier shell :" << shellFilePath;
+        if (!process.waitForStarted())
+        {
+            qDebug() << "Impossible de démarrer la commande";
+            return;
+        }
+        if (!process.waitForFinished()) {
+            qDebug() << "Erreur: impossible de terminer le processus";
+            return;
+        }
+        process.waitForFinished();
+        qDebug() << "Commande terminée avec le code de sortie" << process.exitCode();
+
+        // Récupération de la sortie standard et d'erreur
+        QString output = QString::fromUtf8(process.readAllStandardOutput());
+        QString errorOutput = QString::fromUtf8(process.readAllStandardError());
+        qDebug() << "errorOutput :" << errorOutput;
+        qDebug() << "output :" << output;
+
+        // Suppression du fichier shell
+        if (QFile::exists(shellFilePath))
+        {
+            if (!QFile::remove(shellFilePath))
+            {
+                qDebug() << "Erreur lors de la suppression du fichier shell";
+            }
+        }
+
+        // Affichage d'un message de réussite
+        QMessageBox::information(nullptr, "Cryptage terminé", "L'image a été cryptée avec succès.");
     }
-
-    // Affichage d'un message de réussite
-    QMessageBox::information(nullptr, "Cryptage terminé", "L'image a été cryptée avec succès.");
-
 }
 
 void MainWindow::steghide_write_doc()
@@ -262,11 +267,13 @@ void MainWindow::steghide_write_doc()
 
         // Affichage d'un message de confirmation
         QMessageBox::information(nullptr, "Sauvegarde réussie", "Le fichier a été enregistré avec succès.");
+        m_send_txt_user="User_send_data";
     }
     else
     {
         // Affichage d'un message d'erreur
         QMessageBox::critical(nullptr, "Erreur", "Impossible d'ouvrir le fichier en écriture.");
+        m_send_txt_user="NODE";
     }
 }
 

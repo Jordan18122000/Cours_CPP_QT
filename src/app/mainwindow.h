@@ -41,6 +41,7 @@ private:
     /* Private Members                                               */
     /*---------------------------------------------------------------*/
     QString m_passphrase_user;
+    QString m_send_txt_user;
     void connectSignalsSlots();
 
 

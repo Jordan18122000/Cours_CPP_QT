@@ -16,37 +16,48 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QLabel" name="label_text_cryptage">
-      <property name="text">
-       <string>Message à cacher :</string>
-      </property>
-     </widget>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QLabel" name="label_text_cryptage">
+        <property name="text">
+         <string>Message à cacher :</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPlainTextEdit" name="plainTextEdit_cryptage">
+        <property name="readOnly">
+         <bool>false</bool>
+        </property>
+        <property name="plainText">
+         <string>NONE</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_write_document">
+        <property name="text">
+         <string>Ecrire le message à cacher dans le document</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_cryptage">
+        <property name="text">
+         <string>Choisir l'image à crypter</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_passphrase">
+        <property name="text">
+         <string>PassPhrase</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
-    <item row="1" column="0" colspan="3">
-     <widget class="QPlainTextEdit" name="plainTextEdit_cryptage">
-      <property name="readOnly">
-       <bool>false</bool>
-      </property>
-      <property name="plainText">
-       <string>NONE</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0" colspan="2">
-     <widget class="QPushButton" name="pushButton_write_document">
-      <property name="text">
-       <string>Ecrire les message à cacher dans le document</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="2">
-     <widget class="QPushButton" name="pushButton_passphrase">
-      <property name="text">
-       <string>PassPhrase</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="0" colspan="3">
+    <item row="1" column="0">
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QLabel" name="label_text_decryptage">
@@ -81,7 +92,7 @@
       </item>
      </layout>
     </item>
-    <item row="5" column="0">
+    <item row="2" column="0">
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QLabel" name="label">
@@ -94,13 +105,6 @@
        <widget class="QSpinBox" name="spinBox"/>
       </item>
      </layout>
-    </item>
-    <item row="3" column="0" colspan="3">
-     <widget class="QPushButton" name="pushButton_cryptage">
-      <property name="text">
-       <string>Choisir l'image à crypter</string>
-      </property>
-     </widget>
     </item>
    </layout>
   </widget>
